@@ -26,6 +26,7 @@ class EnemyMatrix {
                 if (bullet.collidWith(enemyMatrix.enemies[j][k])) {
                     bullet.setActive(false);
                     player.incrementScore(enemyMatrix.enemies[j][k].score);
+                    if (ENEMY_SPEED < ENEMY_SPEED_THRESHOLD) ENEMY_SPEED += ENEMY_SPEED_INCREMENT;
                     enemyMatrix.enemies[j].splice(k, 1);
                 };
             }
