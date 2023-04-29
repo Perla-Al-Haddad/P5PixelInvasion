@@ -67,6 +67,7 @@ class Player {
 
     reset() {
         this.lives = 3;
+        this.score = 0;
         this.bullets = [];
     }
 }
