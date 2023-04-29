@@ -1,10 +1,10 @@
 class Player {
     constructor() {
-        this.width = 40;
-        this.height = 30;
+        this.width = PLAYER_WIDTH;
+        this.height = PLAYER_HEIGHT;
         this.x = GAME_WIDTH / 2;
         this.y = GAME_HEIGHT - this.height;
-        this.speed = 5;
+        this.speed = PLAYER_SPEED;
     }
 
     show() {
