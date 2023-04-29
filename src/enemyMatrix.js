@@ -15,18 +15,17 @@ class EnemyMatrix {
     }
 
     moveDown() {
-        for (let i = 0; i < this.enemies.length; i++) {
-            for (let j = 0; j < this.enemies[i].length; j++) {
+        for (let i = 0; i < this.enemies.length; i++)
+            for (let j = 0; j < this.enemies[i].length; j++)
                 this.enemies[i][j].y += ENEMY_HEIGHT;
-            }
-        }
     }
 
-    handleBulletCollision(bullet) {
+    handleBulletCollision(bullet, player) {
         for (let j = 0; j < enemyMatrix.enemies.length; j++) {
             for (let k = 0; k < enemyMatrix.enemies[j].length; k++) {
                 if (bullet.collidWith(enemyMatrix.enemies[j][k])) {
                     bullet.setActive(false);
+                    player.incrementScore(enemyMatrix.enemies[j][k].score);
                     enemyMatrix.enemies[j].splice(k, 1);
                 };
             }

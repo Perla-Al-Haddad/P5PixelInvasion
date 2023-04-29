@@ -4,7 +4,8 @@ class Enemy {
         this.height = ENEMY_HEIGHT;
         this.x = x;
         this.y = y;
-        this.speed = 0.2;
+        this.speed = ENEMY_SPEED;
+        this.score = ENEMY_SCORE;
     }
 
     show() {
