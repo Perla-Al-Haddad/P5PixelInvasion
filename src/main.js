@@ -20,34 +20,56 @@ function draw() {
     background(45);
 
     if (GAME_STATE == 'play') {
+        
+        textAlign(LEFT);
+        setLineDash([5, 5]); //create the dashed line pattern here
+        stroke(255,255,255);
+        line(0, ENEMY_Y_LIMIT, GAME_WIDTH, ENEMY_Y_LIMIT);
+
+        noStroke();
+
         for (let i = player.bullets.length - 1; i >= 0; i--) {
             if (player.bullets[i].active) {
                 player.bullets[i].show();
                 player.bullets[i].move();
-    
+
                 enemyMatrix.handleBulletCollision(player.bullets[i], player);
             } else {
                 player.bullets.splice(i, 1);
             }
         }
-    
+
         player.show();
         player.move();
-    
+
         enemyMatrix.processEnemies(player);
     } else if (GAME_STATE == 'game_over') {
         textSize(32);
         textAlign(CENTER);
         fill(0, 255, 0);
-        text("GAME OVER", GAME_WIDTH/2, GAME_HEIGHT/2);
-        player.renderScore(GAME_WIDTH/2, GAME_HEIGHT/2 + 32);
-
+        text("GAME OVER", GAME_WIDTH / 2, GAME_HEIGHT / 2);
+        player.renderScore(GAME_WIDTH / 2, GAME_HEIGHT / 2 + 32);
+        textSize(16);
+        text("Press 'r' to restart the game.".toUpperCase(), GAME_WIDTH/2, GAME_HEIGHT / 2 + 32*2);
     }
 }
 
 
 function keyPressed() {
-    if (keyCode === 32) {
+    if (keyCode === 32) { // press spacebar
         player.fire();
     }
+    if (keyCode === 82) { // press r
+        resetGame();
+    }
+}
+
+function resetGame() {
+    player.reset();
+    enemyMatrix.initEnemiesMatrix();
+    GAME_STATE = 'play';
+}
+
+function setLineDash(list) {
+    drawingContext.setLineDash(list);
 }

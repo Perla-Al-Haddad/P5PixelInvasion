@@ -64,4 +64,9 @@ class Player {
             GAME_STATE = 'game_over';
         }
     }
+
+    reset() {
+        this.lives = 3;
+        this.bullets = [];
+    }
 }

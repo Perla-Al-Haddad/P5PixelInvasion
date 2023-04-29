@@ -16,6 +16,9 @@ class Enemy {
 
     move() {
         this.x += ENEMY_DIR * ENEMY_SPEED;
+        if (this.y + this.height > ENEMY_Y_LIMIT) {
+            GAME_STATE = 'game_over';
+        }
     }
 
     fire() {
