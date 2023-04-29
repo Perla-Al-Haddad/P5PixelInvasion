@@ -33,7 +33,7 @@ class EnemyMatrix {
         }
     }
 
-    processEnemies() {
+    processEnemies(player) {
         for (let i = 0; i < this.enemies.length; i++) {
             for (let j = 0; j < this.enemies[i].length; j++) {
                 this.enemies[i][j].show();
@@ -48,6 +48,7 @@ class EnemyMatrix {
                     if (this.enemies[i][j].bullets[k].active) {
                         this.enemies[i][j].bullets[k].show();
                         this.enemies[i][j].bullets[k].move();
+                        player.handleBulletCollision(this.enemies[i][j].bullets[k]);
                     } else {
                         this.enemies[i][j].bullets.splice(k, 1);
                     }

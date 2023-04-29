@@ -15,7 +15,7 @@ class Player {
     show() {
         fill(255, 255, 255);
         rect(this.x, this.y, this.width, this.height);
-        this.renderScore();
+        this.renderScore(10, 35);
         this.renderLives();
     }
 
@@ -37,11 +37,11 @@ class Player {
         this.score += score;
     }
 
-    renderScore() {
+    renderScore(x, y) {
         fill(255, 255, 255);
 
         textSize(20);
-        text('SCORE: ' + this.score, 10, 35);
+        text('SCORE: ' + this.score, x, y);
     }
 
     renderLives() {
@@ -49,5 +49,20 @@ class Player {
 
         textSize(20);
         text('LIVES: ' + '#'.repeat(this.lives), GAME_WIDTH - 150, 35);
+    }
+
+    resetPosition() {
+        this.x = GAME_WIDTH / 2 - this.width / 2;
+    }
+
+    handleBulletCollision(bullet) {
+        if (bullet.collidWith(this)) {
+            bullet.setActive(false);
+            this.resetPosition();
+            this.lives--;
+            if (this.lives == 0) {
+                game_state = 'game_over';
+            }
+        }
     }
 }
