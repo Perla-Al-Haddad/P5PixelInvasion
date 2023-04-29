@@ -4,8 +4,8 @@ let enemyMatrix;
 function setup() {
     createCanvas(GAME_WIDTH, GAME_HEIGHT);
     createP("Made with <span class='emoji'>♥</span> by Perla Al Haddad");
-    player = new Player();
 
+    player = new Player();
     enemyMatrix = new EnemyMatrix();
 }
 
