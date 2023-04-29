@@ -1,16 +1,12 @@
 let player;
-let enemies = [];
+let enemyMatrix;
 
 function setup() {
     createCanvas(GAME_WIDTH, GAME_HEIGHT);
     createP("Made with <span class='emoji'>♥</span> by Perla Al Haddad");
     player = new Player();
 
-    for (let i = 0; i < 6; i++) {
-        let currEnemyX = i * (ENEMY_WIDTH + ENEMY_OFFSET) + ENEMY_CONTAINER_X_PADDING;
-        let enemy = new Enemy(currEnemyX, ENEMY_CONTAINER_Y_PADDING);
-        enemies.push(enemy);
-    }
+    enemyMatrix = new EnemyMatrix();
 }
 
 function draw() {
@@ -20,12 +16,8 @@ function draw() {
         if (player.bullets[i].active) {
             player.bullets[i].show();
             player.bullets[i].move();
-            for (let j = enemies.length-1; j >= 0; j--) {
-                if (player.bullets[i].collidWith(enemies[j])) {
-                    player.bullets[i].active = false;
-                    enemies.splice(j, 1);
-                };
-            }
+
+            enemyMatrix.handleBulletCollision(player.bullets[i]);
         } else {
             player.bullets.splice(i, 1);
         }
@@ -34,10 +26,7 @@ function draw() {
     player.show();
     player.move();
 
-    for (let i = 0; i < enemies.length; i++) {
-        enemies[i].show();
-        enemies[i].move();
-    }
+    enemyMatrix.processEnemies();
 }
 
 

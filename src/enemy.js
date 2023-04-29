@@ -4,6 +4,7 @@ class Enemy {
         this.height = ENEMY_HEIGHT;
         this.x = x;
         this.y = y;
+        this.speed = 0.2;
     }
 
     show() {
@@ -12,7 +13,7 @@ class Enemy {
     }
 
     move() {
-        // this.y+=0.2;
+        this.x += ENEMY_DIR * this.speed;
     }
 
 }

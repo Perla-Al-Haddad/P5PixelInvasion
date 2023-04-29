@@ -1,9 +1,9 @@
 class Bullet {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
         this.width = BULLET_WIDTH;
         this.height = BULLET_HEIGHT;
+        this.x = x - this.width/2;
+        this.y = y;
 
         this.speed = 15;
 
@@ -20,6 +20,10 @@ class Bullet {
         if (this.y < 0) {
             this.active = false;
         }
+    }
+
+    setActive(state) {
+        this.active = state;
     }
 
     collidWith(other) {
