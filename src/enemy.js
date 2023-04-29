@@ -7,7 +7,6 @@ class Enemy {
     }
 
     show() {
-        rectMode('center');
         fill(0, 255, 0);
         rect(this.x, this.y, this.width, this.height);
     }
