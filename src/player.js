@@ -56,13 +56,12 @@ class Player {
     }
 
     handleBulletCollision(bullet) {
-        if (bullet.collidWith(this)) {
-            bullet.setActive(false);
-            this.resetPosition();
-            this.lives--;
-            if (this.lives == 0) {
-                game_state = 'game_over';
-            }
+        if (!bullet.collidWith(this)) return;
+        bullet.setActive(false);
+        this.resetPosition();
+        this.lives--;
+        if (this.lives == 0) {
+            GAME_STATE = 'game_over';
         }
     }
 }

@@ -19,7 +19,7 @@ function setup() {
 function draw() {
     background(45);
 
-    if (game_state == 'play') {
+    if (GAME_STATE == 'play') {
         for (let i = player.bullets.length - 1; i >= 0; i--) {
             if (player.bullets[i].active) {
                 player.bullets[i].show();
@@ -35,7 +35,7 @@ function draw() {
         player.move();
     
         enemyMatrix.processEnemies(player);
-    } else if (game_state == 'game_over') {
+    } else if (GAME_STATE == 'game_over') {
         textSize(32);
         textAlign(CENTER);
         fill(0, 255, 0);

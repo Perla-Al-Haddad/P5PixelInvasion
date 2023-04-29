@@ -1,6 +1,10 @@
 
 class EnemyMatrix {
     constructor() {
+        this.initEnemiesMatrix();
+    }
+
+    initEnemiesMatrix() {
         this.enemies = [];
         for (let i = 0; i < NUMBER_OF_ENEMY_LINES; i++) {
             let enemyLine = [];
@@ -12,7 +16,7 @@ class EnemyMatrix {
             }
             this.enemies.push(enemyLine);
         }
-    }
+    } 
 
     moveDown() {
         for (let i = 0; i < this.enemies.length; i++)
@@ -34,8 +38,12 @@ class EnemyMatrix {
     }
 
     processEnemies(player) {
+        let enemyCount = 0;
+
         for (let i = 0; i < this.enemies.length; i++) {
             for (let j = 0; j < this.enemies[i].length; j++) {
+                enemyCount++;
+
                 this.enemies[i][j].show();
                 this.enemies[i][j].move();
 
@@ -53,6 +61,7 @@ class EnemyMatrix {
                         this.enemies[i][j].bullets.splice(k, 1);
                     }
                 }
+
                 if (j == this.enemies[i].length - 1 &&
                     this.enemies[i][j].x > GAME_WIDTH - ENEMY_CONTAINER_X_PADDING * 2) {
                     this.enemies[i][j].x = GAME_WIDTH - ENEMY_CONTAINER_X_PADDING * 2;
@@ -66,5 +75,13 @@ class EnemyMatrix {
                 }
             }
         }
+
+        if (enemyCount == 0) {
+            this.resetEnemyMatrix();
+        }
+    }
+
+    resetEnemyMatrix() {
+        this.initEnemiesMatrix();
     }
 }
