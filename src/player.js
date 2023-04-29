@@ -29,7 +29,7 @@ class Player {
 
     fire() {
         if (this.bullets.length >= BULLET_LIMIT) return;
-        let bullet = new Bullet(this.x + this.width / 2, this.y);
+        let bullet = new Bullet(this.x + this.width / 2, this.y, -1, PLAYER_BULLET_SPEED);
         this.bullets.push(bullet);
     }
 

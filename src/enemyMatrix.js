@@ -38,6 +38,20 @@ class EnemyMatrix {
             for (let j = 0; j < this.enemies[i].length; j++) {
                 this.enemies[i][j].show();
                 this.enemies[i][j].move();
+
+                let willFire = Math.floor(Math.random() * 1000);
+                if (willFire == 1) {
+                    this.enemies[i][j].fire();
+                }
+
+                for (let k = this.enemies[i][j].bullets.length - 1; k >= 0; k--) {
+                    if (this.enemies[i][j].bullets[k].active) {
+                        this.enemies[i][j].bullets[k].show();
+                        this.enemies[i][j].bullets[k].move();
+                    } else {
+                        this.enemies[i][j].bullets.splice(k, 1);
+                    }
+                }
                 if (j == this.enemies[i].length - 1 &&
                     this.enemies[i][j].x > GAME_WIDTH - ENEMY_CONTAINER_X_PADDING * 2) {
                     this.enemies[i][j].x = GAME_WIDTH - ENEMY_CONTAINER_X_PADDING * 2;

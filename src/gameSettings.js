@@ -8,6 +8,8 @@ const PLAYER_SPEED = 5;
 const BULLET_WIDTH = 5;
 const BULLET_HEIGHT = 15;
 const BULLET_LIMIT = 2;
+const PLAYER_BULLET_SPEED = 15;
+const ENEMY_BULLET_SPEED = 5;
 
 const ENEMY_WIDTH = 25;
 const ENEMY_HEIGHT = 15;

@@ -1,11 +1,13 @@
 class Bullet {
-    constructor(x, y) {
+    constructor(x, y, dirY, speed) {
         this.width = BULLET_WIDTH;
         this.height = BULLET_HEIGHT;
         this.x = x - this.width/2;
         this.y = y;
 
-        this.speed = 15;
+        this.dirY = dirY;
+
+        this.speed = speed;
 
         this.active = true;
     }
@@ -16,8 +18,8 @@ class Bullet {
     }
 
     move() {
-        this.y -= this.speed;
-        if (this.y < 0) {
+        this.y += this.dirY * this.speed;
+        if (this.y < 0 || this.y > GAME_HEIGHT) {
             this.active = false;
         }
     }

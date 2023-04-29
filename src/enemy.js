@@ -5,6 +5,8 @@ class Enemy {
         this.x = x;
         this.y = y;
         this.score = ENEMY_SCORE;
+
+        this.bullets = [];
     }
 
     show() {
@@ -14,6 +16,12 @@ class Enemy {
 
     move() {
         this.x += ENEMY_DIR * ENEMY_SPEED;
+    }
+
+    fire() {
+        if (this.bullets.length >= BULLET_LIMIT) return;
+        let bullet = new Bullet(this.x + this.width / 2, this.y, 1, ENEMY_BULLET_SPEED);
+        this.bullets.push(bullet);
     }
 
 }
