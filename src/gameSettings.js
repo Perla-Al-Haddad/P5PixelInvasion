@@ -29,5 +29,3 @@ let ENEMY_DIR = 1;
 
 const NUMBER_OF_ENEMIES_PER_LINE = 8;
 const NUMBER_OF_ENEMY_LINES = 5;
-
-let GAME_STATE = 'play';

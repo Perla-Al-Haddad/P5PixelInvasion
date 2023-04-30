@@ -67,7 +67,7 @@ class Player {
         this.resetPosition();
         this.lives--;
         if (this.lives == 0) {
-            GAME_STATE = 'game_over';
+            game.state = game.states.GAME_OVER;
         }
     }
 

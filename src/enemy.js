@@ -19,13 +19,13 @@ class Enemy {
     move() {
         this.x += ENEMY_DIR * ENEMY_SPEED;
         if (this.y + this.height > ENEMY_Y_LIMIT) {
-            GAME_STATE = 'game_over';
+            game.state = game.states.GAME_OVER;
         }
     }
 
     fire() {
         let bullet = new Bullet(this.x + this.width / 2, this.y, 1, ENEMY_BULLET_SPEED);
-        enemyBullets.push(bullet);
+        game.enemyBullets.push(bullet);
     }
 
     deactivate() {
