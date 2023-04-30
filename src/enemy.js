@@ -6,9 +6,9 @@ class Enemy {
         this.y = y;
         this.score = ENEMY_SCORE;
 
-        this.bullets = [];
+        this.active = true;
 
-        this.setUpEnemyFireInterval();
+        this.interval = this.setUpEnemyFireInterval();
     }
 
     show() {
@@ -24,13 +24,18 @@ class Enemy {
     }
 
     fire() {
-        if (this.bullets.length >= BULLET_LIMIT) return;
         let bullet = new Bullet(this.x + this.width / 2, this.y, 1, ENEMY_BULLET_SPEED);
-        this.bullets.push(bullet);
+        enemyBullets.push(bullet);
+    }
+
+    deactivate() {
+        this.active = false;
+        clearInterval(this.interval);
     }
 
     setUpEnemyFireInterval() {
-        window.setInterval(() => {
+        return window.setInterval(() => {
+            if (!this.active) return;
             let willFire = Math.floor(Math.random() / ENEMY_FIRE_LIKELIHOOD);
             if (willFire == 1) this.fire();
         }, ENEMY_FIRE_FREQUENCY);

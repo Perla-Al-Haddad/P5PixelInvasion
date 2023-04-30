@@ -2,6 +2,8 @@ let player;
 let enemyMatrix;
 let pixelFont;
 
+let enemyBullets = [];
+
 function preload() {
     pixelFont = loadFont('assets/fonts/I-pixel-u.ttf');
 }
@@ -20,10 +22,10 @@ function draw() {
     background(45);
 
     if (GAME_STATE == 'play') {
-        
+
         textAlign(LEFT);
         setLineDash([5, 5]); //create the dashed line pattern here
-        stroke(255,255,255);
+        stroke(255, 255, 255);
         line(0, ENEMY_Y_LIMIT, GAME_WIDTH, ENEMY_Y_LIMIT);
 
         noStroke();
@@ -42,7 +44,19 @@ function draw() {
         player.show();
         player.move();
 
-        enemyMatrix.processEnemies(player);
+        for (let i = enemyBullets.length - 1; i >= 0; i--) {
+            if (enemyBullets[i].active) {
+                enemyBullets[i].move();
+                enemyBullets[i].show();
+
+                player.handleBulletCollision(enemyBullets[i]);
+            } else {
+                enemyBullets.splice(i, 1);
+            }
+        }
+
+        enemyMatrix.processEnemies();
+
     } else if (GAME_STATE == 'game_over') {
         textSize(32);
         textAlign(CENTER);
@@ -50,7 +64,7 @@ function draw() {
         text("GAME OVER", GAME_WIDTH / 2, GAME_HEIGHT / 2);
         player.renderScore(GAME_WIDTH / 2, GAME_HEIGHT / 2 + 32);
         textSize(16);
-        text("Press 'r' to restart the game.".toUpperCase(), GAME_WIDTH/2, GAME_HEIGHT / 2 + 32*2);
+        text("Press 'r' to restart the game.".toUpperCase(), GAME_WIDTH / 2, GAME_HEIGHT / 2 + 32 * 2);
     }
 }
 
@@ -66,7 +80,9 @@ function keyPressed() {
 
 function resetGame() {
     player.reset();
-    enemyMatrix.initEnemiesMatrix();
+    ENEMY_SPEED = ENEMY_INIT_SPEED;
+    enemyBullets = [];
+    enemyMatrix.resetEnemyMatrix();
     GAME_STATE = 'play';
 }
 

@@ -16,7 +16,7 @@ class EnemyMatrix {
             }
             this.enemies.push(enemyLine);
         }
-    } 
+    }
 
     moveDown() {
         for (let i = 0; i < this.enemies.length; i++)
@@ -25,19 +25,19 @@ class EnemyMatrix {
     }
 
     handleBulletCollision(bullet, player) {
-        for (let j = 0; j < enemyMatrix.enemies.length; j++) {
-            for (let k = 0; k < enemyMatrix.enemies[j].length; k++) {
-                if (bullet.collidWith(enemyMatrix.enemies[j][k])) {
-                    bullet.setActive(false);
-                    player.incrementScore(enemyMatrix.enemies[j][k].score);
-                    if (ENEMY_SPEED < ENEMY_SPEED_THRESHOLD) ENEMY_SPEED += ENEMY_SPEED_INCREMENT;
-                    enemyMatrix.enemies[j].splice(k, 1);
-                };
+        for (let j = 0; j < this.enemies.length; j++) {
+            for (let k = 0; k < this.enemies[j].length; k++) {
+                if (!bullet.collidWith(this.enemies[j][k])) continue;
+                bullet.setActive(false);
+                player.incrementScore(this.enemies[j][k].score);
+                if (ENEMY_SPEED < ENEMY_SPEED_THRESHOLD) ENEMY_SPEED += ENEMY_SPEED_INCREMENT;
+                this.enemies[j][k].deactivate();
+                this.enemies[j].splice(k, 1);
             }
         }
     }
 
-    processEnemies(player) {
+    processEnemies() {
         let enemyCount = 0;
 
         for (let i = 0; i < this.enemies.length; i++) {
@@ -46,16 +46,6 @@ class EnemyMatrix {
 
                 this.enemies[i][j].show();
                 this.enemies[i][j].move();
-
-                for (let k = this.enemies[i][j].bullets.length - 1; k >= 0; k--) {
-                    if (this.enemies[i][j].bullets[k].active) {
-                        this.enemies[i][j].bullets[k].show();
-                        this.enemies[i][j].bullets[k].move();
-                        player.handleBulletCollision(this.enemies[i][j].bullets[k]);
-                    } else {
-                        this.enemies[i][j].bullets.splice(k, 1);
-                    }
-                }
 
                 if (j == this.enemies[i].length - 1 &&
                     this.enemies[i][j].x > GAME_WIDTH - ENEMY_CONTAINER_X_PADDING * 2) {
@@ -77,6 +67,9 @@ class EnemyMatrix {
     }
 
     resetEnemyMatrix() {
+        for (let j = 0; j < this.enemies.length; j++)
+            for (let k = 0; k < this.enemies[j].length; k++)
+                this.enemies[j][k].deactivate();
         this.initEnemiesMatrix();
     }
 }
