@@ -20,6 +20,12 @@ class Player {
     }
 
     move() {
+        if (this.x < 0) {
+            this.x = GAME_WIDTH;
+        } else if (this.x > GAME_WIDTH) {
+            this.x = 0;
+        }
+
         if (keyIsDown(RIGHT_ARROW)) {
             this.x += this.speed;
         } else if (keyIsDown(LEFT_ARROW)) {
