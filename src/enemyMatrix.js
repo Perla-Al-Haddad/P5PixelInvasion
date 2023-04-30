@@ -47,11 +47,6 @@ class EnemyMatrix {
                 this.enemies[i][j].show();
                 this.enemies[i][j].move();
 
-                let willFire = Math.floor(Math.random() * 1000);
-                if (willFire == 1) {
-                    this.enemies[i][j].fire();
-                }
-
                 for (let k = this.enemies[i][j].bullets.length - 1; k >= 0; k--) {
                     if (this.enemies[i][j].bullets[k].active) {
                         this.enemies[i][j].bullets[k].show();

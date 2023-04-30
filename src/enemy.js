@@ -7,6 +7,8 @@ class Enemy {
         this.score = ENEMY_SCORE;
 
         this.bullets = [];
+
+        this.setUpEnemyFireInterval();
     }
 
     show() {
@@ -27,4 +29,10 @@ class Enemy {
         this.bullets.push(bullet);
     }
 
+    setUpEnemyFireInterval() {
+        window.setInterval(() => {
+            let willFire = Math.floor(Math.random() / ENEMY_FIRE_LIKELIHOOD);
+            if (willFire == 1) this.fire();
+        }, ENEMY_FIRE_FREQUENCY);
+    }
 }
