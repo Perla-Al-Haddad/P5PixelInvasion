@@ -1,14 +1,26 @@
 let player;
 let enemyMatrix;
 let pixelFont;
+let enemySprites = [];
+let playerSprites = [];
 
 function preload() {
     pixelFont = loadFont('assets/fonts/I-pixel-u.ttf');
+
+    for (let i = 1; i < NUMBER_OF_ENEMY_SHIP_SPRITES+1; i++) {
+        enemySprites.push(loadImage(`assets/sprites/enemyShips/ship${i}.png`));
+    }
+
+    playerSprites[0] = loadImage('assets/sprites/ships/ship5/shipLeft.png');
+    playerSprites[1] = loadImage('assets/sprites/ships/ship5/ship.png');
+    playerSprites[2] = loadImage('assets/sprites/ships/ship5/shipRight.png');
 }
 
 function setup() {
     createCanvas(GAME_WIDTH, GAME_HEIGHT);
     // createP("Made with <span class='emoji'>♥</span> by Perla Al Haddad");
+
+    noSmooth();
 
     textFont(pixelFont);
 
@@ -19,7 +31,7 @@ function setup() {
 }
 
 function draw() {
-    background(45);
+    background(20);
 
     if (game.state == game.states.PLAY) {
         game.processPlayState();

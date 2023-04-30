@@ -7,13 +7,17 @@ class Enemy {
         this.score = ENEMY_SCORE;
 
         this.active = true;
+        this.spriteIndex = Math.floor(Math.random() * NUMBER_OF_ENEMY_SHIP_SPRITES);
+        this.sprite = enemySprites[this.spriteIndex];
+
 
         this.interval = this.setUpEnemyFireInterval();
     }
 
     show() {
-        fill(0, 255, 0);
-        rect(this.x, this.y, this.width, this.height);
+        image(this.sprite, this.x, this.y, 16*2, 16*2);
+        fill(0, 255, 0, 100);
+        // rect(this.x, this.y, this.width, this.height);
     }
 
     move() {

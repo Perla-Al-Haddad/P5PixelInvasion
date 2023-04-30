@@ -9,12 +9,17 @@ class Player {
         this.lives = 3;
         this.score = 0;
 
+        this.sprite = playerSprites[1];
+
         this.bullets = [];
     }
 
     show() {
-        fill(255, 255, 255);
-        rect(this.x, this.y, this.width, this.height);
+        image(this.sprite, this.x, this.y, 8*4, 8*4);
+
+        fill(255, 0, 0, 100);
+        // rect(this.x, this.y, this.width, this.height);
+        
         this.renderScore(10, 35);
         this.renderLives();
     }
@@ -27,9 +32,13 @@ class Player {
         }
 
         if (keyIsDown(RIGHT_ARROW)) {
+            this.sprite = playerSprites[2];
             this.x += this.speed;
         } else if (keyIsDown(LEFT_ARROW)) {
+            this.sprite = playerSprites[0];
             this.x -= this.speed;
+        } else {
+            this.sprite = playerSprites[1];
         }
     }
 
