@@ -5,6 +5,8 @@ const PLAYER_WIDTH = 8*4;
 const PLAYER_HEIGHT = 8*4;
 const PLAYER_SPEED = 5;
 
+const NUMBER_OF_STARS = 50;
+
 const BULLET_WIDTH = 5;
 const BULLET_HEIGHT = 15;
 const BULLET_LIMIT = 2;

@@ -10,9 +10,35 @@ class Game {
         this.player = player;
         this.enemyBullets = [];
         this.enemyMatrix = enemyMatrix;
+
+        this.stars = this.initStars();
+    }
+
+    initStars() {
+        let stars = [];
+        for (let i = 0; i < NUMBER_OF_STARS; i++) {
+            const x = Math.random() * GAME_WIDTH;
+            const dim = 2 + Math.random() * 3;
+            const speed = 1 + Math.random() * 3;
+            const opacity = 10 + Math.random() * 80;
+            let star = new Star(x, dim, speed, opacity);
+            stars.push(star)
+        }
+        return stars;
+    }
+
+    renderStars() {
+        for (let i = 0; i < this.stars.length; i++) {
+            this.stars[i].move();
+            this.stars[i].show();
+        }
     }
 
     renderLimitLine() {
+        function setLineDash(list) {
+            drawingContext.setLineDash(list);
+        }
+
         setLineDash([5, 5]); // create the dashed line pattern here
         stroke(255, 255, 255);
         line(0, ENEMY_Y_LIMIT, GAME_WIDTH, ENEMY_Y_LIMIT);

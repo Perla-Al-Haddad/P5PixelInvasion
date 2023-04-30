@@ -4,10 +4,11 @@ let pixelFont;
 let enemySprites = [];
 let playerSprites = [];
 
+
 function preload() {
     pixelFont = loadFont('assets/fonts/I-pixel-u.ttf');
 
-    for (let i = 1; i < NUMBER_OF_ENEMY_SHIP_SPRITES+1; i++) {
+    for (let i = 1; i < NUMBER_OF_ENEMY_SHIP_SPRITES + 1; i++) {
         enemySprites.push(loadImage(`assets/sprites/enemyShips/ship${i}.png`));
     }
 
@@ -28,10 +29,13 @@ function setup() {
     enemyMatrix = new EnemyMatrix();
 
     game = new Game(player, enemyMatrix);
+
 }
 
 function draw() {
     background(20);
+
+    game.renderStars();
 
     if (game.state == game.states.PLAY) {
         game.processPlayState();
@@ -49,7 +53,3 @@ function keyPressed() {
     }
 }
 
-
-function setLineDash(list) {
-    drawingContext.setLineDash(list);
-}
