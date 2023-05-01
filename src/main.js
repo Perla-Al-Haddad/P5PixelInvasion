@@ -5,7 +5,16 @@ let enemySprites = [];
 let playerSprites = [];
 
 
+let fireFX;
+let explosionFX;
+let playGameSound;
+
 function preload() {
+    soundFormats('mp3', 'wav');
+    playGameSound = loadSound('assets/sounds/music/play');
+    fireFX = loadSound('assets/sounds/fx/laserShoot.wav');
+    explosionFX = loadSound('assets/sounds/fx/explosion.wav');
+    
     pixelFont = loadFont('assets/fonts/I-pixel-u.ttf');
 
     for (let i = 1; i < NUMBER_OF_ENEMY_SHIP_SPRITES + 1; i++) {
@@ -30,6 +39,7 @@ function setup() {
 
     game = new Game(player, enemyMatrix);
 
+    game.playGameMusic();
 }
 
 function draw() {

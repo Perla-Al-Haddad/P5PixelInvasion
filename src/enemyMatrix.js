@@ -33,6 +33,8 @@ class EnemyMatrix {
             for (let k = 0; k < this.enemies[j].length; k++) {
                 if (!bullet.collidWith(this.enemies[j][k])) continue;
                 
+                game.playExplosionFX(0.1);
+
                 bullet.setActive(false);
                 
                 player.incrementScore(this.enemies[j][k].score);

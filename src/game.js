@@ -99,4 +99,24 @@ class Game {
         this.enemyMatrix.resetEnemyMatrix();
         this.state = this.states.PLAY;
     }
+
+    playFireFX() {
+        fireFX.play();
+        fireFX.setVolume(0.5);
+        userStartAudio();
+    }
+    
+    playExplosionFX(volume) {
+        explosionFX.play();
+        explosionFX.setVolume(volume);
+        userStartAudio();
+    }
+    
+    playGameMusic() {
+        playGameSound.play();
+        playGameSound.loop();
+        playGameSound.setVolume(0.2);
+        userStartAudio();
+    }
+    
 }

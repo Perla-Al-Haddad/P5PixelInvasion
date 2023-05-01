@@ -44,6 +44,7 @@ class Player {
 
     fire() {
         if (this.bullets.length >= BULLET_LIMIT) return;
+        game.playFireFX();
         let bullet = new Bullet(this.x + this.width / 2, this.y, -1, PLAYER_BULLET_SPEED);
         this.bullets.push(bullet);
     }
@@ -75,6 +76,7 @@ class Player {
         bullet.setActive(false);
         this.resetPosition();
         this.lives--;
+        game.playExplosionFX(0.5);
         if (this.lives == 0) {
             game.state = game.states.GAME_OVER;
         }
