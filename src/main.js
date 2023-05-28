@@ -62,4 +62,3 @@ function keyPressed() {
         game.resetGame();
     }
 }
-

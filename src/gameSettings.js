@@ -1,5 +1,5 @@
 const GAME_WIDTH = 600;
-const GAME_HEIGHT = 600;
+const GAME_HEIGHT = window.innerHeight - window.innerHeight/5;
 
 const PLAYER_WIDTH = 8*4;
 const PLAYER_HEIGHT = 8*4;
@@ -21,7 +21,7 @@ const ENEMY_CONTAINER_X_PADDING = 30;
 const ENEMY_CONTAINER_Y_PADDING = 50;
 const ENEMY_SPEED_INCREMENT = 0.05;
 const ENEMY_SPEED_THRESHOLD = 0.7;
-const ENEMY_Y_LIMIT = 500;
+const ENEMY_Y_LIMIT = GAME_HEIGHT - 100;
 const ENEMY_FIRE_FREQUENCY = 1000;
 const ENEMY_FIRE_LIKELIHOOD = 1/10;
 const ENEMY_INIT_SPEED = 0.2;

@@ -12,6 +12,17 @@ class Game {
         this.enemyMatrix = enemyMatrix;
 
         this.stars = this.initStars();
+
+        this._moveGameCanvasToDiv();
+    }
+
+    _moveGameCanvasToDiv() {
+        let gameDiv = document.getElementById("gameDiv");
+        let gameCanvas = document.getElementById("defaultCanvas0");
+
+        let fragement = document.createDocumentFragment();
+        fragement.appendChild(gameCanvas);
+        gameDiv.appendChild(fragement);
     }
 
     initStars() {
